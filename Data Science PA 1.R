@@ -101,6 +101,7 @@ ggplot(data_long, aes(x = variable, y = value)) +
        y = "Values") +
   theme_minimal()               #plotting the Box plot for all the numerical value columns in a single Box plot with x axis as Column names and Y value as the actual Values
 
+#Explanation of plot: I created a boxplot for each numeric column in my dataset to visualize the distribution and detect any outliers. The outliers are highlighted in red, allowing me to easily identify any extreme values in the dataset.
 
 #Next lets calculate the number of outliers present, Here I have used the method of IQR to classify the outliers
 
@@ -258,6 +259,8 @@ ggplot(data.frame(PC = 1:length(cumulative_variance), CumulativeVariance = cumul
   labs(title = "Cumulative Variance Explained by PCA", x = "Principal Components", y = "Cumulative Variance") +
   theme_minimal()
 
+#Explanation of plot: I plotted the cumulative variance explained by the principal components to determine how much variance each component accounts for. By identifying the point where the cumulative variance reaches 90%, I can choose the optimal number of components for dimensionality reduction.
+
 num_components <- which(cumulative_variance >= 0.90)[1]   #we select the number of components upto 90% of the data, that is cumulative frequency. PCA organizes the features such that the majority contributing factor is placed first.
 cat("Number of components to retain for 90% variance:", num_components, "\n")
 
@@ -331,6 +334,8 @@ ggplot(data_label_encoded_after_scaling, aes(x = age, y = balance, color = y)) +
                      name = "Subscribed") +
   theme_minimal()
 
+#Explanation of plot: I visualized the relationship between age and balance, with points colored based on whether the client subscribed to the term deposit. The jitter helps to separate overlapping points, allowing clearer insight into how age and balance correlate with subscription status.
+
 
 #PLOT 2.
 
@@ -354,6 +359,8 @@ ggplot(job_summary, aes(x = Job, y = Count, group = Subscribed, color = Subscrib
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme_minimal()
 
+#Explanation of plot: This plot illustrates the distribution of subscription status across different job categories. The lines and points clearly show how many clients in each job category subscribed to the term deposit, helping to identify trends and differences in subscription behavior.
+
 
 #Plot 3
 
@@ -374,6 +381,8 @@ ggplot(long_data, aes(x = Value, color = y, group = y)) +
        y = "Count",
        color = "Subscribed (y)") +
   theme_minimal()
+
+#Explanation of plot: This visualization shows the distribution of various numerical features segmented by subscription status to the term deposit. Each line graph provides insights into how different values of these features relate to clients who subscribed versus those who did not, highlighting potential correlations.
 
 
 
@@ -396,6 +405,8 @@ ggplot(data_long_before, aes(x = variable, y = value)) +
        y = "Values") +
   theme_minimal()
 
+#Explanation of plot: This plot displays the distribution of numeric features in the dataset prior to any data cleaning or preprocessing. The boxplots help identify the presence of outliers, providing a clear overview of the range and central tendency of each variable, which is essential for understanding the data's initial state.
+
 
 #Next we plot the boxplot for data after the null values, duplicates, noise and outliers have been removed.
 
@@ -415,7 +426,7 @@ ggplot(data_long_after, aes(x = variable, y = value)) +
        y = "Values") +
   theme_minimal()
 
-
+#Explanation of plot: This plot illustrates the distribution of numeric features after cleaning the dataset and removing noise and outliers. Compared to the previous boxplots, I can see a more compact range of values, indicating that the preprocessing steps have effectively reduced the impact of extreme values on the data distribution.
 
 data_long_after <- data_scaled_and_normalized %>%
   select(where(is.numeric)) %>%
@@ -430,6 +441,8 @@ ggplot(data_long_after, aes(x = variable, y = value)) +
        x = "Columns",
        y = "Values") +
   theme_minimal()
+
+#Explanation of plot: This plot shows the distribution of the numeric features after scaling and normalization. The scaling process has brought the values closer together, effectively standardizing the ranges across different variables and enhancing the comparability of their distributions.
 
 #We can Clearly see the differene between the box plots and that the Outliers have been smoothened out and is very less compared to intial plot.
 #Infact, there no outliers present as we removed all of them. The reason it is still showing up is that, when we plot box plot it calculates the new ranges based on passed data and anything outside that range, it plots as outliers.
